@@ -3,30 +3,32 @@ package leetcode;
 public class Code_198_HouseRobber {
     public int rob(int[] nums) {
         if (nums == null) return 0;
-        return process(nums, 0, 0);
-    }
-
-    public int process(int[] nums, int res, int i) {
-        if (i >= nums.length) {
-            return res;
+        int size = nums.length;
+        if (size < 1) return 0;
+        int[] pass = new int[size];
+        int[] rob = new int[size];
+        pass[0] = 0;
+        rob[0] = nums[0];
+        for (int i = 1; i < size; i++) {
+            pass[i] = Math.max(pass[i - 1], rob[i - 1]);
+            rob[i] = pass[i - 1] + nums[i];
         }
-        return Math.max(process(nums, res + nums[i], i + 2),
-                process(nums, res, i + 1)
-        );
+        return Math.max(pass[size - 1], rob[size - 1]);
     }
 
-// TODO 重写 改写 dp
-
-//    public int dp(int[] nums) {
-//        int size = nums.length;
-//        int[] robed = new int[size];
-//        int[] pass = new int[size];
-//        robed[0] = nums[0];
-//        pass[0] = 0;
-//        for (int i = 1; i < size; i++) {
-//            robed[i] = nums[i] + pass[i - 1];
-//            pass[i] = Math.max(pass[i - 1], robed[i - 1]);
-//        }
-//        return Math.max(robed[size - 1], pass[size - 1]);
-//    }
+    public int rob1(int[] nums) {
+        if (nums == null) return 0;
+        int size = nums.length;
+        if (size < 1) return 0;
+        if (size < 2) return nums[0];
+        int g1 = nums[0];
+        int g2 = Math.max(nums[0], nums[1]);
+        int g = 0;
+        for (int i = 2; i < size; i++) {
+            g = Math.max(g1 + nums[i], g2);
+            g1 = g2;
+            g2 = g;
+        }
+        return g;
+    }
 }

@@ -1,3 +1,5 @@
+package leetcode;
+
 import java.util.HashMap;
 
 public class Code_205_IsomorphicStrings {

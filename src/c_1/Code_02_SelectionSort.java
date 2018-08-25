@@ -1,9 +1,6 @@
 package c_1;
 
-import org.omg.CORBA.INTERNAL;
-
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class Code_02_SelectionSort {
 
