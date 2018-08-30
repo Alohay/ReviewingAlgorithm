@@ -5,6 +5,50 @@ import java.util.List;
 
 public class Code_401_BinaryWatch {
 
+    public static void main(String[] args) {
+        System.out.println(readBinaryWatch(1));
+    }
+
+    public static List<String> readBinaryWatch(int num) {
+        return process(new int[10], 0, num);
+    }
+
+    public static List<String> process(int[] arr, int i, int rest) {
+        List<String> res = new ArrayList<>();
+        if (rest == 0) {
+            String s = val(arr);
+            if (s != null) res.add(s);
+            return res;
+        }
+        if (i == 10) {
+            return res;
+        }
+        arr[i] = 1;
+        res.addAll(process(arr, i + 1, rest - 1));
+        arr[i] = 0;
+        res.addAll(process(arr, i + 1, rest));
+        return res;
+    }
+
+    public static String val(int[] arr) {
+        int h = 0;
+        for (int i = 0; i < 4; i++) {
+            h = (h << 1) + arr[i];
+        }
+        if (h > 11) return null;
+        int m = 0;
+        for (int i = 0; i < 6; i++) {
+            m = (m << 1) + arr[i + 4];
+        }
+        if (m > 59) return null;
+        StringBuilder sb = new StringBuilder();
+        sb.append(h).append(":");
+        if (m < 10) sb.append("0");
+        sb.append(m);
+        return sb.toString();
+    }
+
+
     // TODO
 //    public List<String> readBinaryWatch(int num) {
 //        List<String> list = new ArrayList<>();
