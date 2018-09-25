@@ -7,10 +7,14 @@ public class Main1 {
         Scanner in = new Scanner(System.in);
         int m = in.nextInt();
         int n = in.nextInt();
-        System.out.println(bigYo(n,m));
-        System.out.println(smallBe(n,m));
+//        System.out.println(bigYo(n,m));
+//        System.out.println(smallBe(n,m));
+
     }
 
+
+    public static void test(){
+    }
 
     public static int bigYo(int n, int m) {
         int nn = Math.max(n, m);
